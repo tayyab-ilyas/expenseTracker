@@ -1,9 +1,9 @@
 import 'package:expense_tracker/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
-final String appTitle = "Expense Tracker";
+const String appTitle = "Expense Tracker";
 void main() {
-  runApp(ExpenseApp());
+  runApp(const ExpenseApp());
 }
 
 class ExpenseApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class ExpenseApp extends StatelessWidget {
         brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

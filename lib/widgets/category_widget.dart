@@ -18,7 +18,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -26,7 +26,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               padding: const EdgeInsets.only(right: 20),
               child: Text(
                 "${widget.rowNumber + 1}.",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,21 +37,20 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 onChanged: (text) {
                   print(text);
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Category',
                 ),
               ),
             ),
-            Icon(Icons.attach_money),
+            const Icon(Icons.attach_money),
             Expanded(
               child: TextField(
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(
-                    RegExp(r'[0-9]+(\.){0,1}[0-9]*')
-                  )
+                      RegExp(r'[0-9]+(\.){0,1}[0-9]*'))
                 ],
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Cost',
                 ),
