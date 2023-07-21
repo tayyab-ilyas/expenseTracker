@@ -1,3 +1,4 @@
+import 'package:expense_tracker/main.dart';
 import 'package:expense_tracker/widgets/category_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -9,12 +10,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String title = 'Expense Tracker';
+  List<double> costForEachRow = [];
+  String title = appTitle;
   int totalRow = 0;
   void _addRow() {
     setState(() {
-      totalRow += 1;
+      costForEachRow.add(0);
     });
+  }
+
+  void _updateTotalCost() {
+    setState(() {
+      double totalCost = costForEachRow.length > 0
+          ? costForEachRow.reduce((value, element) => value + element)
+          : 0;
+      if (totalCost > 0.0) {
+        title = "${appTitle} | Total Cost: \$${totalCost}";
+      } else {
+        title = appTitle;
+      }
+    });
+  }
+
+  void _updateCostForEachRow(int rowNum, double newVal) {
+    print("Row ${rowNum}-newVal ${newVal}");
+    setState(() {
+      if (costForEachRow.length > rowNum) {
+        costForEachRow[rowNum] = newVal;
+      }
+    });
+    _updateTotalCost();
   }
 
   @override
@@ -26,13 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
             for (int i = 0; i < totalRow; ++i)
               CategoryWidget(
                 rowNumber: i,
-                callback: () {},
+                callback: _updateCostForEachRow,
               )
           ],
         ),
       ),
       appBar: AppBar(
-        title: Text('Expense Tracker'),
+        title: Text(appTitle),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _addRow,

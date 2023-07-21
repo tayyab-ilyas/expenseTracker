@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget(
@@ -45,9 +46,11 @@ class _CategoryWidgetState extends State<CategoryWidget> {
             Icon(Icons.attach_money),
             Expanded(
               child: TextField(
-                onChanged: (text) {
-                  print(text);
-                },
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                    RegExp(r'[0-9]+(\.){0,1}[0-9]*')
+                  )
+                ],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Cost',
